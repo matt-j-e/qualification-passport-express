@@ -42,7 +42,22 @@ const getAllItems = (model, res) => {
     .json(items));
 };
 
+const getItemById = (model, res, id) => {
+  const Model = getModel(model);
+  
+  return Model.findByPk(id, { include: getInclude(model) })
+    .then(item => {
+      if (!item) {
+        res.status(404).json({ error: `The ${model} could not be found.` });
+      } else {
+        if (item.dataValues.password) delete item.dataValues.password;
+        res.status(200).json(item);
+      }
+    });
+};
+
 module.exports = {
   createItem,
   getAllItems,
+  getItemById,
 };

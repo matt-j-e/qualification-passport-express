@@ -1,6 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 const router = express.Router();
 const workerControllers = require('../controllers/workers.js');
+
+router.all("*", cors());
 
 router
   .route('/')
