@@ -19,6 +19,7 @@ exports.deleteById = (req, res) => helpers.deleteItem('award', res, req.params.a
 
 exports.getByWorkerId = (req, res) => {
   return Award.findAll({
+    order: [["award_date", "DESC"]],
     where: {
       WorkerId: req.params.workerId
     },
