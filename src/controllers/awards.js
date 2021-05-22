@@ -1,4 +1,4 @@
-const { Award, Qualification, Worker } = require('../models');
+const { Award, Qualification } = require('../models');
 const helpers = require('./helpers');
 
 exports.create = (req, res) => helpers.createItem('award', res, req.body);

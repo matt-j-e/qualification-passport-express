@@ -1,5 +1,4 @@
 const { Qualification } = require('../models');
-// const { createItem } = require('./helpers');
 const helpers = require('./helpers');
 
 exports.create = (req, res) => helpers.createItem('qualification', res, req.body);
