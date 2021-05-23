@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Worker, Award } = require('../models');
 const helpers = require('./helpers');
 // const admin = require('firebase-admin');
@@ -22,6 +23,19 @@ exports.getAll = (req, res) => {
   return Worker.findAll({
     order: [["lastname", "ASC"]],
     // include: Award,
+  })
+    .then((items) => res.status(200)
+    .json(items));
+};
+
+exports.getByJobType = (req, res) => {
+  return Worker.findAll({
+    order: [["lastname", "ASC"]],
+    where: {
+      job: {
+        [Op.substring]: req.params.searchText
+      }
+    }
   })
     .then((items) => res.status(200)
     .json(items));

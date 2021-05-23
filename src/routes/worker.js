@@ -16,6 +16,10 @@ router
   .patch(workerControllers.updateById)
   .delete(workerControllers.deleteById);
 
+router
+  .route('/job/:searchText')
+  .get(workerControllers.getByJobType);
+
 // router
 //   .route('/login')
 //   .post(workerControllers.authenticateWorker);
