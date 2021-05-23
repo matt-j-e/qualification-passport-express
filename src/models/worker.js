@@ -28,8 +28,9 @@ module.exports = (connection, DataTypes) => {
           isEmail: true,
       }
     },
-    firebaseUID: {
+    id: {
       type: DataTypes.STRING,
+      primaryKey: true,
       allowNull: false,
       validate: {
         notEmpty: true,
