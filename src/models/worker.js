@@ -28,11 +28,11 @@ module.exports = (connection, DataTypes) => {
           isEmail: true,
       }
     },
-    password: {
+    firebaseUID: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-          len: [8,],
+        notEmpty: true,
       }
     },
   };

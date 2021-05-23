@@ -16,8 +16,8 @@ router
   .patch(workerControllers.updateById)
   .delete(workerControllers.deleteById);
 
-router
-  .route('/login')
-  .post(workerControllers.authenticateWorker);
+// router
+//   .route('/login')
+//   .post(workerControllers.authenticateWorker);
 
 module.exports = router;
