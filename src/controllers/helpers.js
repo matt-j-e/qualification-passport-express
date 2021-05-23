@@ -56,8 +56,22 @@ const getItemById = (model, res, id) => {
     });
 };
 
+const deleteItem = (model, res,  id) => {
+  const Model = getModel(model);
+
+  return Model.destroy({ where: { id } })
+    .then(deletedRows => {
+      if (!deletedRows) {
+        res.status(404).json({ error: `The ${model} could not be found.` });
+      } else {
+        res.status(204).json(deletedRows);
+      }
+    });
+};
+
 module.exports = {
   createItem,
   getAllItems,
   getItemById,
+  deleteItem,
 };
