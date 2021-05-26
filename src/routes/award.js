@@ -18,6 +18,10 @@ router
 
 router
   .route('/worker/:workerId')
-  .get(awardControllers.getByWorkerId)
+  .get(awardControllers.getByWorkerId);
+
+router
+  .route('/expiring/:workerId')
+  .get(awardControllers.getExpiringByWorkerId);
 
 module.exports = router;

@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Award, Qualification } = require('../models');
 const helpers = require('./helpers');
 
@@ -22,6 +23,21 @@ exports.getByWorkerId = (req, res) => {
     order: [["award_date", "DESC"]],
     where: {
       WorkerId: req.params.workerId
+    },
+    include: Qualification
+  })
+  .then((items) => res.status(200)
+  .json(items));
+};
+
+exports.getExpiringByWorkerId = (req, res) => {
+  const fourWeeksHence = Date.now() + (28 * 24 * 60 * 60 * 1000);
+  return Award.findAll({
+    where: {
+      WorkerId: req.params.workerId,
+      expiry_date: {
+        [Op.lt]: new Date(fourWeeksHence)
+      }
     },
     include: Qualification
   })
